@@ -13,7 +13,8 @@ const COMPONENT_COLORS = {
 
 const TABS = [
   {
-    icon: '🥾', label: 'Trilhas',
+    icon: '🥾',
+    label: 'Trilhas',
     segments: [
       { label: 'Persona', text: 'Você é um guia de trilhas experiente do cerrado brasileiro, com foco em ecoturismo sustentável.' },
       { label: 'Contexto', text: 'Estou planejando uma trilha de 3 dias para um grupo de 8 pessoas, mistura de iniciantes e intermediários, saindo de Brasília.' },
@@ -23,7 +24,8 @@ const TABS = [
     ],
   },
   {
-    icon: '📊', label: 'Dados',
+    icon: '📊',
+    label: 'Dados',
     segments: [
       { label: 'Persona', text: 'Você é um analista de dados sênior especializado em visualização de dados para executivos não técnicos.' },
       { label: 'Contexto', text: 'Tenho uma planilha com resultados de NPS de 6 meses, com dados por região, produto e faixa etária do cliente.' },
@@ -33,7 +35,8 @@ const TABS = [
     ],
   },
   {
-    icon: '🧴', label: 'Skincare',
+    icon: '🧴',
+    label: 'Skincare',
     segments: [
       { label: 'Persona', text: 'Você é uma dermatologista com 15 anos de experiência, especializada em peles sensíveis e climas tropicais.' },
       { label: 'Contexto', text: 'Sou mulher, 32 anos, pele mista com tendência a acne hormonal. Moro em Brasília, clima muito seco no inverno.' },
@@ -43,7 +46,8 @@ const TABS = [
     ],
   },
   {
-    icon: '💻', label: 'GitHub',
+    icon: '💻',
+    label: 'GitHub',
     segments: [
       { label: 'Persona', text: 'Você é um engenheiro de software sênior especializado em React e boas práticas de código limpo.' },
       { label: 'Contexto', text: 'Tenho um componente React de 400 linhas que mistura lógica de negócio, estado global e UI. Está difícil de testar e manter.' },
@@ -64,7 +68,8 @@ export default function Slide07Prompts() {
         <motion.h2
           className="font-serif text-center mb-2"
           style={{ fontSize: 'clamp(1.6rem, 3.5vw, 2.6rem)', color: '#1C1208' }}
-          initial={{ opacity: 0, y: -10 }} animate={inView ? { opacity: 1, y: 0 } : {}}
+          initial={{ opacity: 0, y: -10 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5 }}
         >
           4 Prompts na Prática
@@ -72,15 +77,18 @@ export default function Slide07Prompts() {
         <motion.p
           className="font-sans text-sm text-center mb-4"
           style={{ color: '#C4A882' }}
-          initial={{ opacity: 0 }} animate={inView ? { opacity: 1 } : {}}
+          initial={{ opacity: 0 }}
+          animate={inView ? { opacity: 1 } : {}}
           transition={{ delay: 0.2 }}
         >
           prompts reais que eu uso — com anatomia visível
         </motion.p>
 
+        {/* Tabs */}
         <div className="flex gap-2 mb-4 justify-center flex-wrap">
           {TABS.map((tab, i) => (
-            <motion.button key={i}
+            <motion.button
+              key={i}
               onClick={() => setActiveTab(i)}
               className="font-sans text-sm px-4 py-2 rounded-full border transition-all"
               style={{
@@ -88,33 +96,49 @@ export default function Slide07Prompts() {
                 color: activeTab === i ? 'white' : '#888',
                 borderColor: activeTab === i ? '#D4845A' : '#E0D8CF',
               }}
-              initial={{ opacity: 0, y: 10 }} animate={inView ? { opacity: 1, y: 0 } : {}}
+              initial={{ opacity: 0, y: 10 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0.3 + i * 0.08 }}
-              whileHover={{ scale: 1.04 }}>
+              whileHover={{ scale: 1.04 }}
+            >
               {tab.icon} {tab.label}
             </motion.button>
           ))}
         </div>
 
+        {/* Prompt content */}
         <AnimatePresence mode="wait">
-          <motion.div key={activeTab}
+          <motion.div
+            key={activeTab}
             className="rounded-xl border overflow-hidden"
             style={{ borderColor: '#E8DDD0' }}
-            initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.25 }}>
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.25 }}
+          >
             {TABS[activeTab].segments.map((seg, i) => (
               <div key={i} className="flex">
+                {/* Color bar */}
                 <div style={{ width: '4px', background: COMPONENT_COLORS[seg.label], flexShrink: 0 }} />
+                {/* Content */}
                 <div className="flex-1 px-4 py-3 border-b last:border-b-0" style={{ borderColor: '#F0EBE4' }}>
-                  <span className="font-sans text-xs font-semibold uppercase tracking-wide mb-1 block"
-                    style={{ color: COMPONENT_COLORS[seg.label] }}>{seg.label}</span>
-                  <p className="font-mono text-xs leading-relaxed" style={{ color: '#333' }}>{seg.text}</p>
+                  <span
+                    className="font-sans text-xs font-semibold uppercase tracking-wide mb-1 block"
+                    style={{ color: COMPONENT_COLORS[seg.label] }}
+                  >
+                    {seg.label}
+                  </span>
+                  <p className="font-mono text-xs leading-relaxed" style={{ color: '#333' }}>
+                    {seg.text}
+                  </p>
                 </div>
               </div>
             ))}
           </motion.div>
         </AnimatePresence>
       </div>
+
       <NextArrow nextId="slide-08" />
     </section>
   );

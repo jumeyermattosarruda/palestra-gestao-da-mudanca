@@ -4,6 +4,7 @@ import NextArrow from '../NextArrow';
 
 const TITLE = 'Do Hype à Prática';
 
+// Decorative asterisks positions
 const STARS = [
   { top: '8%', left: '4%', size: 32, rotate: 12 },
   { top: '15%', right: '6%', size: 20, rotate: -25 },
@@ -51,6 +52,7 @@ export default function Slide00Capa() {
 
   return (
     <section id="slide-00" className="slide slide-dark">
+      {/* Decorative asterisks */}
       {STARS.map((s, i) => (
         <motion.div
           key={i}
@@ -64,7 +66,9 @@ export default function Slide00Capa() {
         </motion.div>
       ))}
 
+      {/* Main content */}
       <div className="flex flex-col items-center justify-center px-6 text-center z-10 w-full max-w-4xl">
+        {/* Pre-label */}
         <motion.p
           className="font-sans text-sm tracking-widest uppercase mb-8"
           style={{ color: '#C4A882' }}
@@ -75,6 +79,7 @@ export default function Slide00Capa() {
           palestra de IA aplicada
         </motion.p>
 
+        {/* Typewriter title */}
         <h1
           className="font-serif font-bold leading-tight mb-6"
           style={{
@@ -97,6 +102,7 @@ export default function Slide00Capa() {
           )}
         </h1>
 
+        {/* Subtitle */}
         <motion.p
           className="font-sans text-lg md:text-xl"
           style={{ color: '#F0E6D6', opacity: 0.6, maxWidth: '500px' }}
@@ -107,6 +113,7 @@ export default function Slide00Capa() {
           como a IA entra (de verdade) na rotina de trabalho
         </motion.p>
 
+        {/* Divider */}
         <motion.div
           className="mt-10 mb-6"
           style={{ width: '48px', height: '2px', background: '#D4845A' }}
@@ -116,6 +123,7 @@ export default function Slide00Capa() {
         />
       </div>
 
+      {/* Footer */}
       <motion.footer
         className="absolute bottom-6 left-0 right-0 flex justify-center"
         initial={{ opacity: 0 }}

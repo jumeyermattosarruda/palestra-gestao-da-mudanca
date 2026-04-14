@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
+import { useInView } from 'react-intersection-observer';
 import Navigation from './components/Navigation';
 import Slide00Capa from './components/slides/Slide00Capa';
 import Slide01Abertura from './components/slides/Slide01Abertura';

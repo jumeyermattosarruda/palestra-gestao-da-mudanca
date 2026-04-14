@@ -3,14 +3,19 @@ import { useInView } from 'react-intersection-observer';
 import NextArrow from '../NextArrow';
 
 const LAYERS = [
+  // Input layer (4 nodes)
   [{ x: 80, y: 130 }, { x: 80, y: 210 }, { x: 80, y: 290 }, { x: 80, y: 370 }],
+  // Hidden layer 1 (5 nodes)
   [{ x: 220, y: 100 }, { x: 220, y: 180 }, { x: 220, y: 260 }, { x: 220, y: 340 }, { x: 220, y: 420 }],
+  // Hidden layer 2 (5 nodes)
   [{ x: 360, y: 100 }, { x: 360, y: 180 }, { x: 360, y: 260 }, { x: 360, y: 340 }, { x: 360, y: 420 }],
+  // Output layer (3 nodes)
   [{ x: 500, y: 170 }, { x: 500, y: 260 }, { x: 500, y: 350 }],
 ];
 
 const LAYER_LABELS = ['Input', 'Camada Oculta', '', 'Output'];
 
+// Build all connections
 const CONNECTIONS = [];
 for (let l = 0; l < LAYERS.length - 1; l++) {
   for (const src of LAYERS[l]) {
@@ -22,6 +27,8 @@ for (let l = 0; l < LAYERS.length - 1; l++) {
 
 export default function Slide04RedeNeural() {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.3 });
+
+  const allNodes = LAYERS.flat();
 
   return (
     <section id="slide-04" className="slide slide-light" ref={ref}>
@@ -45,40 +52,65 @@ export default function Slide04RedeNeural() {
           uma rede neural simplificada
         </motion.p>
 
+        {/* SVG Neural Network */}
         <div style={{ width: '100%', maxWidth: 580 }}>
           <svg viewBox="0 0 580 520" width="100%" height="auto">
+            {/* Connections */}
             {CONNECTIONS.map((c, i) => (
-              <motion.line key={i}
+              <motion.line
+                key={i}
                 x1={c.x1} y1={c.y1} x2={c.x2} y2={c.y2}
-                stroke="#1C1208" strokeWidth="0.8"
+                stroke="#1C1208"
+                strokeWidth="0.8"
                 initial={{ opacity: 0 }}
                 animate={inView ? { opacity: 0.12 } : {}}
                 transition={{ delay: 0.3, duration: 0.5 }}
               />
             ))}
 
+            {/* Nodes with staggered lighting */}
             {LAYERS.map((layer, li) =>
               layer.map((node, ni) => {
                 const totalPrev = LAYERS.slice(0, li).reduce((s, l) => s + l.length, 0);
                 const idx = totalPrev + ni;
                 const delay = 0.4 + idx * 0.08;
                 return (
-                  <motion.circle key={`${li}-${ni}`}
+                  <motion.circle
+                    key={`${li}-${ni}`}
                     cx={node.x} cy={node.y} r={14}
-                    fill="white" stroke="#1C1208" strokeWidth="2"
+                    fill="white"
+                    stroke="#1C1208"
+                    strokeWidth="2"
                     initial={{ scale: 0.3, opacity: 0 }}
-                    animate={inView ? { scale: 1, opacity: 1, fill: ['#FFFFFF', '#D4845A', '#FFFFFF'] } : {}}
-                    transition={{ delay, duration: 0.5, fill: { delay: delay + 0.1, duration: 0.6, times: [0, 0.5, 1] } }}
+                    animate={inView
+                      ? {
+                          scale: 1,
+                          opacity: 1,
+                          fill: ['#FFFFFF', '#D4845A', '#FFFFFF'],
+                          stroke: '#1C1208',
+                        }
+                      : {}}
+                    transition={{
+                      delay,
+                      duration: 0.5,
+                      fill: { delay: delay + 0.1, duration: 0.6, times: [0, 0.5, 1] },
+                    }}
                   />
                 );
               })
             )}
 
+            {/* Layer labels */}
             {LAYER_LABELS.map((label, li) => (
               label ? (
-                <motion.text key={li}
-                  x={LAYERS[li][0].x} y={470}
-                  textAnchor="middle" fill="#888" fontSize="11" fontFamily="Inter"
+                <motion.text
+                  key={li}
+                  x={LAYERS[li][0].x}
+                  y={470}
+                  textAnchor="middle"
+                  fill="#888"
+                  fontSize="11"
+                  fontFamily="Inter"
                   initial={{ opacity: 0 }}
                   animate={inView ? { opacity: 1 } : {}}
                   transition={{ delay: 1 }}
@@ -90,6 +122,7 @@ export default function Slide04RedeNeural() {
           </svg>
         </div>
 
+        {/* Legend */}
         <motion.div
           className="flex gap-8 mt-2"
           initial={{ opacity: 0, y: 10 }}
@@ -107,6 +140,7 @@ export default function Slide04RedeNeural() {
           </div>
         </motion.div>
       </div>
+
       <NextArrow nextId="slide-05" />
     </section>
   );

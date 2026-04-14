@@ -1,4 +1,5 @@
-import { motion } from 'framer-motion';
+import { useEffect, useRef } from 'react';
+import { motion, useAnimation } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import NextArrow from '../NextArrow';
 
@@ -27,14 +28,14 @@ function toCart(cx, cy, angle, r) {
 export default function Slide02MeuTime() {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.3 });
 
-  const lineVariant = (delay) => ({
-    hidden: { pathLength: 0, opacity: 0 },
-    visible: { pathLength: 1, opacity: 1, transition: { delay, duration: 0.4 } },
-  });
-
   const nodeVariant = (delay) => ({
     hidden: { opacity: 0, scale: 0 },
     visible: { opacity: 1, scale: 1, transition: { delay, duration: 0.4, ease: 'easeOut' } },
+  });
+
+  const lineVariant = (delay) => ({
+    hidden: { pathLength: 0, opacity: 0 },
+    visible: { pathLength: 1, opacity: 1, transition: { delay, duration: 0.4 } },
   });
 
   return (
@@ -59,14 +60,17 @@ export default function Slide02MeuTime() {
           ferramentas que uso no dia a dia
         </motion.p>
 
+        {/* SVG Diagram */}
         <div className="w-full overflow-visible" style={{ maxWidth: 640 }}>
           <svg viewBox="0 0 640 560" width="100%" height="auto">
+            {/* Lines to main agents */}
             {MAIN_AGENTS.map((agent, i) => {
               const pos = toCart(CENTER.x, CENTER.y, agent.angle, agent.r);
               return (
                 <motion.line
                   key={`main-line-${i}`}
-                  x1={CENTER.x} y1={CENTER.y} x2={pos.x} y2={pos.y}
+                  x1={CENTER.x} y1={CENTER.y}
+                  x2={pos.x} y2={pos.y}
                   stroke="#1C1208" strokeWidth="1.5" opacity="0.3"
                   variants={lineVariant(0.3 + i * 0.12)}
                   initial="hidden"
@@ -75,12 +79,14 @@ export default function Slide02MeuTime() {
               );
             })}
 
+            {/* Dashed lines to day agents */}
             {DAY_AGENTS.map((agent, i) => {
               const pos = toCart(CENTER.x, CENTER.y, agent.angle, agent.r);
               return (
                 <motion.line
                   key={`day-line-${i}`}
-                  x1={CENTER.x} y1={CENTER.y} x2={pos.x} y2={pos.y}
+                  x1={CENTER.x} y1={CENTER.y}
+                  x2={pos.x} y2={pos.y}
                   stroke="#888" strokeWidth="1" strokeDasharray="5,4" opacity="0.5"
                   variants={lineVariant(0.6 + i * 0.1)}
                   initial="hidden"
@@ -89,44 +95,79 @@ export default function Slide02MeuTime() {
               );
             })}
 
-            <motion.circle cx={CENTER.x} cy={CENTER.y} r={36} fill="#D4845A"
-              variants={nodeVariant(0)} initial="hidden" animate={inView ? 'visible' : 'hidden'} />
-            <motion.text x={CENTER.x} y={CENTER.y + 6} textAnchor="middle"
-              fill="white" fontSize="18" fontFamily="Inter" fontWeight="600"
-              variants={nodeVariant(0.1)} initial="hidden" animate={inView ? 'visible' : 'hidden'}>
+            {/* Center node */}
+            <motion.circle
+              cx={CENTER.x} cy={CENTER.y} r={36}
+              fill="#D4845A"
+              variants={nodeVariant(0)}
+              initial="hidden"
+              animate={inView ? 'visible' : 'hidden'}
+            />
+            <motion.text
+              x={CENTER.x} y={CENTER.y + 6}
+              textAnchor="middle"
+              fill="white"
+              fontSize="18"
+              fontFamily="Inter"
+              fontWeight="600"
+              variants={nodeVariant(0.1)}
+              initial="hidden"
+              animate={inView ? 'visible' : 'hidden'}
+            >
               Eu
             </motion.text>
 
+            {/* Main agent nodes */}
             {MAIN_AGENTS.map((agent, i) => {
               const pos = toCart(CENTER.x, CENTER.y, agent.angle, agent.r);
               return (
-                <motion.g key={`main-${i}`}
+                <motion.g
+                  key={`main-${i}`}
                   variants={nodeVariant(0.5 + i * 0.12)}
-                  initial="hidden" animate={inView ? 'visible' : 'hidden'}>
+                  initial="hidden"
+                  animate={inView ? 'visible' : 'hidden'}
+                >
                   <circle cx={pos.x} cy={pos.y} r={22} fill="#1C1208" />
-                  <text x={pos.x} y={pos.y + (agent.angle > 80 || agent.angle < -80 ? 36 : -28)}
-                    textAnchor="middle" fill="#1C1208" fontSize="10" fontFamily="Inter">
+                  <text
+                    x={pos.x}
+                    y={pos.y + (agent.angle > 80 || agent.angle < -80 ? 36 : -28)}
+                    textAnchor="middle"
+                    fill="#1C1208"
+                    fontSize="10"
+                    fontFamily="Inter"
+                  >
                     {agent.label}
                   </text>
                 </motion.g>
               );
             })}
 
+            {/* Day agent nodes */}
             {DAY_AGENTS.map((agent, i) => {
               const pos = toCart(CENTER.x, CENTER.y, agent.angle, agent.r);
               return (
-                <motion.g key={`day-${i}`}
+                <motion.g
+                  key={`day-${i}`}
                   variants={nodeVariant(0.9 + i * 0.1)}
-                  initial="hidden" animate={inView ? 'visible' : 'hidden'}>
+                  initial="hidden"
+                  animate={inView ? 'visible' : 'hidden'}
+                >
                   <circle cx={pos.x} cy={pos.y} r={16} fill="#888" />
-                  <text x={pos.x} y={pos.y + (pos.y > CENTER.y ? 32 : -22)}
-                    textAnchor="middle" fill="#555" fontSize="9" fontFamily="Inter">
+                  <text
+                    x={pos.x}
+                    y={pos.y + (pos.y > CENTER.y ? 32 : -22)}
+                    textAnchor="middle"
+                    fill="#555"
+                    fontSize="9"
+                    fontFamily="Inter"
+                  >
                     {agent.label}
                   </text>
                 </motion.g>
               );
             })}
 
+            {/* Legend */}
             <circle cx={30} cy={510} r={8} fill="#1C1208" />
             <text x={45} y={514} fill="#888" fontSize="10" fontFamily="Inter">Agentes principais</text>
             <circle cx={160} cy={510} r={6} fill="#888" />
@@ -134,6 +175,7 @@ export default function Slide02MeuTime() {
           </svg>
         </div>
       </div>
+
       <NextArrow nextId="slide-02b" />
     </section>
   );
