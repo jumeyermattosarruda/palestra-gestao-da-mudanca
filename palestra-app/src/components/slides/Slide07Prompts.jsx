@@ -35,17 +35,6 @@ const TABS = [
     ],
   },
   {
-    icon: '🧴',
-    label: 'Skincare',
-    segments: [
-      { label: 'Persona', text: 'Você é uma dermatologista com 15 anos de experiência, especializada em peles sensíveis e climas tropicais.' },
-      { label: 'Contexto', text: 'Sou mulher, 32 anos, pele mista com tendência a acne hormonal. Moro em Brasília, clima muito seco no inverno.' },
-      { label: 'Tarefa', text: 'Monte uma rotina de skincare manhã e noite com produtos acessíveis, priorizando marcas nacionais.' },
-      { label: 'Restrições', text: 'Sem retinol por enquanto. Orçamento de até R$300 total. Sem mais de 4 passos por rotina.' },
-      { label: 'Formato', text: 'Tabela com colunas: Passo / Produto sugerido / Motivo / Quando aplicar.' },
-    ],
-  },
-  {
     icon: '💻',
     label: 'GitHub',
     segments: [
@@ -63,26 +52,17 @@ export default function Slide07Prompts() {
   const [activeTab, setActiveTab] = useState(0);
 
   return (
-    <section id="slide-07" className="slide slide-light" ref={ref}>
+    <section id="slide-14" className="slide slide-light" ref={ref}>
       <div className="w-full max-w-4xl px-4">
         <motion.h2
-          className="font-serif text-center mb-2"
+          className="font-serif text-center mb-6"
           style={{ fontSize: 'clamp(1.6rem, 3.5vw, 2.6rem)', color: '#1C1208' }}
           initial={{ opacity: 0, y: -10 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5 }}
         >
-          4 Prompts na Prática
+          Prompts na Prática
         </motion.h2>
-        <motion.p
-          className="font-sans text-sm text-center mb-4"
-          style={{ color: '#C4A882' }}
-          initial={{ opacity: 0 }}
-          animate={inView ? { opacity: 1 } : {}}
-          transition={{ delay: 0.2 }}
-        >
-          prompts reais que eu uso — com anatomia visível
-        </motion.p>
 
         {/* Tabs */}
         <div className="flex gap-2 mb-4 justify-center flex-wrap">
@@ -119,9 +99,7 @@ export default function Slide07Prompts() {
           >
             {TABS[activeTab].segments.map((seg, i) => (
               <div key={i} className="flex">
-                {/* Color bar */}
                 <div style={{ width: '4px', background: COMPONENT_COLORS[seg.label], flexShrink: 0 }} />
-                {/* Content */}
                 <div className="flex-1 px-4 py-3 border-b last:border-b-0" style={{ borderColor: '#F0EBE4' }}>
                   <span
                     className="font-sans text-xs font-semibold uppercase tracking-wide mb-1 block"
@@ -139,7 +117,7 @@ export default function Slide07Prompts() {
         </AnimatePresence>
       </div>
 
-      <NextArrow nextId="slide-08" />
+      <NextArrow nextId="slide-15" />
     </section>
   );
 }

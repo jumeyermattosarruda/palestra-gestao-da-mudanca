@@ -6,7 +6,7 @@ export default function Slide01Abertura() {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.3 });
 
   return (
-    <section id="slide-01" className="slide slide-dark" ref={ref}>
+    <section id="slide-01" className="slide slide-dark" ref={ref}> {/* ID unchanged — position 01 */}
       {/* Phrase 1 — upper left */}
       <motion.div
         className="absolute"
@@ -67,7 +67,7 @@ export default function Slide01Abertura() {
         </p>
       </motion.div>
 
-      <NextArrow nextId="slide-02" />
+      <NextArrow nextId="slide-02" /> {/* next: S02Enquete */}
     </section>
   );
 }

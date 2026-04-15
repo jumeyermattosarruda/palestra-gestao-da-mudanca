@@ -6,7 +6,7 @@ export default function Slide05Contexto() {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.3 });
 
   return (
-    <section id="slide-05" className="slide slide-light" ref={ref}>
+    <section id="slide-09" className="slide slide-light" ref={ref}>
       <div className="w-full max-w-4xl px-6 flex flex-col items-center">
         <motion.h2
           className="font-serif text-center mb-2"
@@ -27,16 +27,15 @@ export default function Slide05Contexto() {
           quanto mais específico o cone, mais preciso o resultado
         </motion.p>
 
-        {/* Cone SVG */}
-        <div style={{ width: '100%', maxWidth: 560 }}>
-          <svg viewBox="0 0 560 400" width="100%" height="auto">
+        {/* Cone SVG — with padding-left to avoid Persona label clipping */}
+        <div style={{ width: '100%', maxWidth: 580, paddingLeft: '1.5rem', overflow: 'visible' }}>
+          <svg viewBox="-10 0 580 400" width="100%" height="auto" overflow="visible">
             {/* Open cone (left) — many possibilities */}
             <motion.g
               initial={{ opacity: 0, x: -20 }}
               animate={inView ? { opacity: 1, x: 0 } : {}}
               transition={{ delay: 0.4, duration: 0.6 }}
             >
-              {/* Cone shape — open */}
               <motion.polygon
                 points="50,200 160,60 160,340"
                 fill="#D4845A"
@@ -46,7 +45,6 @@ export default function Slide05Contexto() {
               />
               <line x1="50" y1="200" x2="160" y2="60" stroke="#D4845A" strokeWidth="2" opacity="0.7" />
               <line x1="50" y1="200" x2="160" y2="340" stroke="#D4845A" strokeWidth="2" opacity="0.7" />
-              {/* Dots inside open cone */}
               {[
                 [120, 120], [140, 170], [110, 210], [145, 250], [130, 290],
                 [100, 150], [155, 130], [105, 270], [150, 300],
@@ -79,7 +77,6 @@ export default function Slide05Contexto() {
               animate={inView ? { opacity: 1, x: 0 } : {}}
               transition={{ delay: 0.7, duration: 0.6 }}
             >
-              {/* Cone shape — closed */}
               <motion.polygon
                 points="400,200 510,155 510,245"
                 fill="#D4845A"
@@ -89,7 +86,6 @@ export default function Slide05Contexto() {
               />
               <line x1="400" y1="200" x2="510" y2="155" stroke="#D4845A" strokeWidth="2" opacity="0.9" />
               <line x1="400" y1="200" x2="510" y2="245" stroke="#D4845A" strokeWidth="2" opacity="0.9" />
-              {/* Single dot in output */}
               <motion.circle
                 cx={500} cy={200} r={8}
                 fill="#D4845A"
@@ -101,13 +97,13 @@ export default function Slide05Contexto() {
               <text x="510" y="380" textAnchor="middle" fill="#888" fontSize="10" fontFamily="Inter">resultado preciso</text>
             </motion.g>
 
-            {/* Labels floating on borders */}
+            {/* Labels floating on borders — Persona shifted right to avoid clipping */}
             <motion.g
               initial={{ opacity: 0 }}
               animate={inView ? { opacity: 1 } : {}}
               transition={{ delay: 1.3 }}
             >
-              <text x="18" y="196" textAnchor="middle" fill="#7B5EA7" fontSize="11" fontFamily="Inter" fontWeight="600">Persona</text>
+              <text x="28" y="196" textAnchor="start" fill="#7B5EA7" fontSize="11" fontFamily="Inter" fontWeight="600">Persona</text>
               <text x="210" y="75" textAnchor="middle" fill="#4A90D9" fontSize="11" fontFamily="Inter" fontWeight="600">Contexto</text>
               <text x="210" y="340" textAnchor="middle" fill="#4A9D6F" fontSize="11" fontFamily="Inter" fontWeight="600">Estrutura</text>
             </motion.g>
@@ -115,7 +111,7 @@ export default function Slide05Contexto() {
         </div>
       </div>
 
-      <NextArrow nextId="slide-06" />
+      <NextArrow nextId="slide-10" />
     </section>
   );
 }
