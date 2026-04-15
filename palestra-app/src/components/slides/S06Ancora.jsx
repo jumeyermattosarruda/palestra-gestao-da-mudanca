@@ -62,7 +62,7 @@ export default function S06Ancora() {
         ))}
       </div>
 
-      <NextArrow nextId="slide-07" />
+      <NextArrow nextId="slide-06b" />
     </section>
   );
 }

@@ -5,7 +5,7 @@ import NextArrow from '../NextArrow';
 const NODES = [
   { id: 'A', label: 'Graduação UnB',               cx: 280, cy: 260, r: 28, cor: '#D4845A' },
   { id: 'B', label: 'Estágios de experimentação',  cx: 420, cy: 160, r: 18, cor: '#888' },
-  { id: 'C', label: 'Intercâmbio Panamá',           cx: 600, cy: 120, r: 20, cor: '#D4845A' },
+  { id: 'C', label: 'Intercâmbios',                  cx: 600, cy: 120, r: 20, cor: '#D4845A' },
   { id: 'D', label: 'Estágio em Tech Writing',      cx: 660, cy: 270, r: 18, cor: '#888' },
   { id: 'E', label: 'Tech Writing Manager',         cx: 580, cy: 380, r: 22, cor: '#D4845A' },
   { id: 'F', label: 'Comunidade Tech Writing BR',   cx: 380, cy: 420, r: 18, cor: '#888' },

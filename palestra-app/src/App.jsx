@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import Navigation from './components/Navigation';
+import FloaterMenu from './components/FloaterMenu';
 
 // Slide 00 — Capa
 import Slide00Capa from './components/slides/Slide00Capa';
@@ -15,6 +16,8 @@ import S04Perguntas from './components/slides/S04Perguntas';
 import S05Venn from './components/slides/S05Venn';
 // Slide 06 — Ancora [NOVO]
 import S06Ancora from './components/slides/S06Ancora';
+// Slide 06b — Transição IA
+import S06bTransicao from './components/slides/S06bTransicao';
 // Slide 07 — Dados do Mercado (was Slide08Dados)
 import Slide08Dados from './components/slides/Slide08Dados';
 // Slide 08 — Como Funciona (was Slide04RedeNeural)
@@ -44,7 +47,7 @@ import S19DinamicaPrompt from './components/slides/S19DinamicaPrompt';
 
 const SLIDE_IDS = [
   'slide-00', 'slide-01', 'slide-02', 'slide-03', 'slide-04',
-  'slide-05', 'slide-06', 'slide-07', 'slide-08', 'slide-09',
+  'slide-05', 'slide-06', 'slide-06b', 'slide-07', 'slide-08', 'slide-09',
   'slide-10', 'slide-11', 'slide-12', 'slide-13', 'slide-14',
   'slide-15', 'slide-16', 'slide-17', 'slide-18', 'slide-19',
 ];
@@ -83,6 +86,7 @@ export default function App() {
   return (
     <div style={{ background: '#1C1208' }}>
       <Navigation activeSlide={activeSlide} />
+      <FloaterMenu />
       <Slide00Capa />
       <Slide01Abertura />
       <S02Enquete />
@@ -90,6 +94,7 @@ export default function App() {
       <S04Perguntas />
       <S05Venn />
       <S06Ancora />
+      <S06bTransicao />
       <Slide08Dados />
       <Slide04RedeNeural />
       <Slide05Contexto />

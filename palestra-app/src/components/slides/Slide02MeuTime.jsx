@@ -17,7 +17,7 @@ const DAY_AGENTS = [
   { label: 'Meta AI',       angle: -160, r: 200 },
   { label: 'Lovable',       angle: -140, r: 195 },
   { label: 'GitHub Copilot', angle: -115, r: 205 },
-  { label: 'MS Copilot',    angle: 195,  r: 195 },
+  { label: 'MS Copilot',    angle: 170,  r: 200 },
 ];
 
 function toCart(cx, cy, angle, r) {

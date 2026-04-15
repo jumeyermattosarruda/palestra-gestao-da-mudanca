@@ -6,24 +6,24 @@ import NextArrow from '../NextArrow';
 const TABS = [
   {
     label: 'Exposição por área',
-    src: './assets/radar-anthropic.png',
-    caption: 'Potencial teórico vs. uso real por categoria ocupacional',
+    src: './assets/graph 1 radar-anthropic.png',
+    titulo: 'Potencial teórico vs. uso observado por categoria ocupacional',
     fonte: 'Anthropic — Labor market impacts of AI, Mar 2026',
     href: 'https://www.anthropic.com/research/labor-market-impacts',
   },
   {
     label: 'Tempo de trabalho',
-    src: './assets/work time exposure.png',
-    caption: '',
-    fonte: '',
-    href: '',
+    src: './assets/graph 2 work time exposure.png',
+    titulo: 'Exposição ao deslocamento por IA por tempo de trabalho',
+    fonte: 'Anthropic — Labor market impacts of AI, Mar 2026',
+    href: 'https://www.anthropic.com/research/labor-market-impacts',
   },
   {
     label: 'Adoção por função',
-    src: './assets/adoption by function.png',
-    caption: '',
-    fonte: '',
-    href: '',
+    src: './assets/graph 3 adoption by function.png',
+    titulo: 'Adoção de IA generativa por função organizacional',
+    fonte: 'WEF — AI in Action: Beyond Experimentation, Jan 2025',
+    href: 'https://reports.weforum.org/docs/WEF_AI_in_Action_Beyond_Experimentation_to_Transform_Industry_2025.pdf',
   },
 ];
 
@@ -112,24 +112,24 @@ export default function Slide08bRadar() {
           >
             <ImageWithFallback src={tab.src} alt={tab.label} />
 
-            {tab.caption && (
-              <p className="font-sans text-xs text-center" style={{ color: '#888' }}>
-                {tab.caption}
-                {tab.href && (
-                  <>
-                    {' · '}
-                    <a
-                      href={tab.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      style={{ color: '#888', textDecoration: 'underline' }}
-                    >
-                      {tab.fonte}
-                    </a>
-                  </>
-                )}
-              </p>
-            )}
+            <div style={{ marginTop: '0.75rem', textAlign: 'center' }}>
+              {tab.titulo && (
+                <p className="font-sans" style={{ fontSize: '12px', color: '#888', fontWeight: 500, marginBottom: 4 }}>
+                  {tab.titulo}
+                </p>
+              )}
+              {tab.fonte && (
+                <a
+                  href={tab.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-sans"
+                  style={{ fontSize: '12px', color: '#888', fontWeight: 400, textDecoration: 'underline' }}
+                >
+                  {tab.fonte}
+                </a>
+              )}
+            </div>
           </motion.div>
         </AnimatePresence>
       </div>

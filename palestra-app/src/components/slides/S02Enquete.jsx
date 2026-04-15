@@ -11,20 +11,18 @@ import {
 } from 'recharts';
 import NextArrow from '../NextArrow';
 
-const DATA = [
-  { valor: 42.9, label: 'Do hype à prática...', cor: '#4A90D9' },
-  { valor: 39.3, label: 'Carreira em tempos...', cor: '#D4845A' },
-  { valor: 14.3, label: 'Bastidores de 20+...', cor: '#E8A838' },
-  { valor: 3.5, label: 'Planejar no caos...', cor: '#4A9D6F' },
-];
+const TOTAL = 28;
 
-function truncate(str, max = 40) {
-  return str.length > max ? str.slice(0, max) + '…' : str;
-}
+const DATA = [
+  { respostas: 12, label: 'Do hype à prática: como a IA entra (de verdade) na rotina de trabalho', cor: '#4A90D9' },
+  { respostas: 11, label: 'Carreira em tempos de mudança: como adaptar sua trajetória quando o mapa muda o tempo todo', cor: '#D4845A' },
+  { respostas:  4, label: 'Bastidores de 20+ reorganizações, 2 empresas: como as empresas mudam (e sobrevivem) por dentro', cor: '#E8A838' },
+  { respostas:  1, label: 'Planejar no caos: como times de tech lidam com planejamento no desenvolvimento de produto', cor: '#4A9D6F' },
+].map(d => ({ ...d, valor: (d.respostas / TOTAL) * 100 }));
 
 const RADIAN = Math.PI / 180;
 
-function CustomLabel({ cx, cy, midAngle, innerRadius, outerRadius, percent, index, valor, label, cor }) {
+function CustomLabel({ cx, cy, midAngle, innerRadius, outerRadius, index, valor, respostas, cor }) {
   const extra = index === 0 ? 8 : 0;
   const radius = outerRadius + extra + 40;
   const x = cx + radius * Math.cos(-midAngle * RADIAN);
@@ -41,7 +39,7 @@ function CustomLabel({ cx, cy, midAngle, innerRadius, outerRadius, percent, inde
       fontFamily="Inter"
       fontSize="12"
     >
-      {valor.toFixed(1)}% · {truncate(label)}
+      {valor.toFixed(1)}% ({respostas})
     </text>
   );
 }
@@ -108,7 +106,7 @@ export default function S02Enquete() {
                   <CustomLabel
                     {...props}
                     valor={DATA[props.index].valor}
-                    label={DATA[props.index].label}
+                    respostas={DATA[props.index].respostas}
                     cor={DATA[props.index].cor}
                   />
                 )}

@@ -126,9 +126,9 @@ export default function Slide08Dados() {
 
   return (
     <section id="slide-07" className="slide" style={{ background: '#1C1208' }} ref={ref}>
-      <div className="w-full max-w-5xl px-6">
+      <div className="w-full max-w-5xl">
         <motion.h2
-          className="font-serif text-center mb-10"
+          className="font-serif text-center mb-4"
           style={{ fontSize: 'clamp(1.8rem, 4vw, 2.8rem)', color: '#F0E6D6' }}
           initial={{ opacity: 0, y: -10 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -137,23 +137,38 @@ export default function Slide08Dados() {
           Dados do Mercado
         </motion.h2>
 
-        <div className="grid grid-cols-12 gap-6">
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(3, 1fr)',
+            gridTemplateRows: 'repeat(2, auto)',
+            gap: '1.5rem',
+            padding: '2rem',
+            alignItems: 'stretch',
+          }}
+        >
           {CARDS.map((card, i) => (
             <motion.div
               key={i}
-              className={card.col + ' flex flex-col justify-center'}
+              style={{
+                padding: '1.5rem',
+                border: '0.5px solid rgba(255,255,255,0.1)',
+                borderRadius: '12px',
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '8px',
+                wordWrap: 'break-word',
+                overflowWrap: 'break-word',
+              }}
               initial={{ opacity: 0, y: 20 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0.1 + i * 0.15 }}
+              transition={{ delay: 0.1 + i * 0.12 }}
             >
               {card.qualitative ? (
-                <motion.div
-                  className="flex flex-col items-start"
-                  initial={{ opacity: 0, y: 12 }}
-                  animate={inView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ delay: 0.85 }}
-                >
-                  <FemaleIcon />
+                <>
+                  <div style={{ display: 'flex', justifyContent: 'center' }}>
+                    <FemaleIcon />
+                  </div>
                   <p className="font-sans" style={{ fontSize: '13px', color: '#C4A882', lineHeight: 1.5 }}>
                     {card.label}
                   </p>
@@ -166,7 +181,7 @@ export default function Slide08Dados() {
                   >
                     {card.fonte}
                   </a>
-                </motion.div>
+                </>
               ) : (
                 <>
                   <p
@@ -180,13 +195,13 @@ export default function Slide08Dados() {
                         suffix={card.suffix}
                         prefix={card.prefix}
                         inView={inView}
-                        delay={200 + i * 200}
+                        delay={200 + i * 150}
                       />
                     ) : (
                       card.statText
                     )}
                   </p>
-                  <p className="font-sans text-sm mt-2" style={{ color: '#C4A882', wordWrap: 'break-word' }}>
+                  <p className="font-sans text-sm" style={{ color: '#C4A882', wordWrap: 'break-word' }}>
                     {card.label}
                   </p>
                   <a
