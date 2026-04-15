@@ -8,7 +8,7 @@ const COMPONENTS = [
     label: 'Persona',
     color: '#7B5EA7',
     angle: -90,
-    r: 140,
+    r: 130,
     desc: 'Define quem a IA deve ser: especialista, tom de voz, nível técnico.',
     example: 'ex: "Aja como um gerente sênior de produto com experiência em startups"',
   },
@@ -16,7 +16,7 @@ const COMPONENTS = [
     label: 'Contexto',
     color: '#4A90D9',
     angle: -30,
-    r: 140,
+    r: 130,
     desc: 'Fornece o cenário e o histórico necessário para a IA entender a situação.',
     example: 'ex: "Estou preparando uma apresentação para investidores Série A"',
   },
@@ -24,7 +24,7 @@ const COMPONENTS = [
     label: 'Tarefa',
     color: '#4A9D6F',
     angle: 30,
-    r: 140,
+    r: 130,
     desc: 'O que exatamente você quer que a IA faça — seja específico e acionável.',
     example: 'ex: "Crie 3 versões do slide de abertura com ângulos diferentes"',
   },
@@ -32,7 +32,7 @@ const COMPONENTS = [
     label: 'Restrições',
     color: '#D4845A',
     angle: 90,
-    r: 140,
+    r: 130,
     desc: 'Limites e regras que a IA deve respeitar ao gerar a resposta.',
     example: 'ex: "Máximo 150 palavras, sem jargões técnicos, tom informal"',
   },
@@ -40,7 +40,7 @@ const COMPONENTS = [
     label: 'Formato',
     color: '#C4607A',
     angle: 150,
-    r: 140,
+    r: 130,
     desc: 'Como você quer receber o resultado: lista, tabela, markdown, JSON…',
     example: 'ex: "Responda em tópicos com bullet points, com título em negrito"',
   },
@@ -48,17 +48,25 @@ const COMPONENTS = [
     label: 'Exemplos',
     color: '#4A9D9D',
     angle: -150,
-    r: 140,
+    r: 130,
     desc: 'Amostras do que você quer (ou não quer) — guiam o estilo e conteúdo.',
     example: 'ex: "Parecido com este email que escrevi: [cola o texto]"',
   },
 ];
 
 const CX = 200, CY = 200;
+const LABEL_R = 195; // r_nó + 65px
 
 function toCart(angle, r) {
   const rad = (angle * Math.PI) / 180;
   return { x: CX + r * Math.cos(rad), y: CY + r * Math.sin(rad) };
+}
+
+function labelAnchor(angle) {
+  // Normalize angle to 0-360
+  const a = ((angle % 360) + 360) % 360;
+  if (a < 180) return 'start';
+  return 'end';
 }
 
 export default function Slide06RaioX() {
@@ -66,7 +74,7 @@ export default function Slide06RaioX() {
   const [active, setActive] = useState(null);
 
   return (
-    <section id="slide-06" className="slide slide-light" ref={ref}>
+    <section id="slide-13" className="slide slide-light" ref={ref}>
       <div className="w-full max-w-5xl px-4 flex flex-col md:flex-row items-center gap-6">
 
         {/* Left: Radial diagram */}
@@ -84,7 +92,7 @@ export default function Slide06RaioX() {
             clique em cada componente
           </p>
 
-          <svg viewBox="0 0 400 400" width="100%" height="auto" style={{ maxWidth: 380 }}>
+          <svg viewBox="0 0 400 400" width="100%" height="auto" style={{ maxWidth: 400, overflow: 'visible' }}>
             {/* Lines */}
             {COMPONENTS.map((c, i) => {
               const pos = toCart(c.angle, c.r);
@@ -127,7 +135,8 @@ export default function Slide06RaioX() {
             {/* Component nodes */}
             {COMPONENTS.map((c, i) => {
               const pos = toCart(c.angle, c.r);
-              const labelPos = toCart(c.angle, c.r + 30);
+              const labelPos = toCart(c.angle, LABEL_R);
+              const anchor = labelAnchor(c.angle);
               return (
                 <motion.g
                   key={i}
@@ -148,7 +157,7 @@ export default function Slide06RaioX() {
                   <text
                     x={labelPos.x}
                     y={labelPos.y + 4}
-                    textAnchor="middle"
+                    textAnchor={anchor}
                     fill={c.color}
                     fontSize="10"
                     fontFamily="Inter"
@@ -164,7 +173,6 @@ export default function Slide06RaioX() {
 
         {/* Right: Sidebar detail */}
         <div className="flex-1 flex flex-col gap-3">
-          {/* Color bars */}
           {COMPONENTS.map((c, i) => (
             <motion.div
               key={i}
@@ -188,7 +196,6 @@ export default function Slide06RaioX() {
             </motion.div>
           ))}
 
-          {/* Tooltip / expanded */}
           <AnimatePresence>
             {active !== null && (
               <motion.div
@@ -196,7 +203,6 @@ export default function Slide06RaioX() {
                 style={{
                   background: `${COMPONENTS[active].color}12`,
                   borderColor: COMPONENTS[active].color,
-                  borderOpacity: 0.4,
                 }}
                 initial={{ opacity: 0, y: 10, height: 0 }}
                 animate={{ opacity: 1, y: 0, height: 'auto' }}
@@ -212,7 +218,7 @@ export default function Slide06RaioX() {
         </div>
       </div>
 
-      <NextArrow nextId="slide-07" />
+      <NextArrow nextId="slide-14" />
     </section>
   );
 }

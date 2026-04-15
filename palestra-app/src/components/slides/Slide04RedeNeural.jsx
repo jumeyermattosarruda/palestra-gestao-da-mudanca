@@ -15,7 +15,6 @@ const LAYERS = [
 
 const LAYER_LABELS = ['Input', 'Camada Oculta', '', 'Output'];
 
-// Build all connections
 const CONNECTIONS = [];
 for (let l = 0; l < LAYERS.length - 1; l++) {
   for (const src of LAYERS[l]) {
@@ -28,10 +27,8 @@ for (let l = 0; l < LAYERS.length - 1; l++) {
 export default function Slide04RedeNeural() {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.3 });
 
-  const allNodes = LAYERS.flat();
-
   return (
-    <section id="slide-04" className="slide slide-light" ref={ref}>
+    <section id="slide-08" className="slide slide-light" ref={ref}>
       <div className="w-full max-w-4xl px-4 flex flex-col items-center">
         <motion.h2
           className="font-serif text-center mb-2"
@@ -52,18 +49,17 @@ export default function Slide04RedeNeural() {
           uma rede neural simplificada
         </motion.p>
 
-        {/* SVG Neural Network */}
         <div style={{ width: '100%', maxWidth: 580 }}>
           <svg viewBox="0 0 580 520" width="100%" height="auto">
-            {/* Connections */}
+            {/* Connections — increased stroke-width and opacity for projector visibility */}
             {CONNECTIONS.map((c, i) => (
               <motion.line
                 key={i}
                 x1={c.x1} y1={c.y1} x2={c.x2} y2={c.y2}
                 stroke="#1C1208"
-                strokeWidth="0.8"
+                strokeWidth="2"
                 initial={{ opacity: 0 }}
-                animate={inView ? { opacity: 0.12 } : {}}
+                animate={inView ? { opacity: 0.55 } : {}}
                 transition={{ delay: 0.3, duration: 0.5 }}
               />
             ))}
@@ -122,7 +118,6 @@ export default function Slide04RedeNeural() {
           </svg>
         </div>
 
-        {/* Legend */}
         <motion.div
           className="flex gap-8 mt-2"
           initial={{ opacity: 0, y: 10 }}
@@ -141,7 +136,7 @@ export default function Slide04RedeNeural() {
         </motion.div>
       </div>
 
-      <NextArrow nextId="slide-05" />
+      <NextArrow nextId="slide-09" />
     </section>
   );
 }

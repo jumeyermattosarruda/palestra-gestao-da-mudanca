@@ -18,9 +18,8 @@ export default function Slide03IATime() {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.3 });
 
   return (
-    <section id="slide-03" className="slide slide-dark" ref={ref}>
+    <section id="slide-12" className="slide slide-dark" ref={ref}>
       <div className="w-full max-w-5xl px-6">
-        {/* Title */}
         <motion.h2
           className="font-serif text-center mb-10"
           style={{ fontSize: 'clamp(1.8rem, 4vw, 3rem)', color: '#F0E6D6' }}
@@ -31,7 +30,6 @@ export default function Slide03IATime() {
           IA = Gerenciar um Time
         </motion.h2>
 
-        {/* Split layout */}
         <div className="flex items-stretch gap-0 relative">
           {/* Left column */}
           <motion.div
@@ -101,7 +99,7 @@ export default function Slide03IATime() {
           </motion.div>
         </div>
 
-        {/* Impact phrase */}
+        {/* Impact phrase — copy fix: removed "— não em saber programar." */}
         <motion.p
           className="font-serif italic text-center mt-10"
           style={{ fontSize: 'clamp(1rem, 2.5vw, 1.5rem)', color: '#C4A882' }}
@@ -109,11 +107,11 @@ export default function Slide03IATime() {
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ delay: 0.9, duration: 0.6 }}
         >
-          "A diferença está em saber pedir, avaliar e iterar — não em saber programar."
+          "A diferença está em saber pedir, avaliar e iterar."
         </motion.p>
       </div>
 
-      <NextArrow nextId="slide-04" />
+      <NextArrow nextId="slide-13" />
     </section>
   );
 }

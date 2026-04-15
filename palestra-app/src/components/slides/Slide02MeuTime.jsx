@@ -1,23 +1,23 @@
-import { useEffect, useRef } from 'react';
-import { motion, useAnimation } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import NextArrow from '../NextArrow';
 
 const CENTER = { x: 320, y: 280 };
 
 const MAIN_AGENTS = [
-  { label: 'ChatGPT', angle: -80, r: 140 },
-  { label: 'Claude', angle: -30, r: 150 },
-  { label: 'Claude Code', angle: 20, r: 155 },
-  { label: 'Ivy', angle: 65, r: 140 },
-  { label: 'Nick', angle: 110, r: 145 },
+  { label: 'ChatGPT',         angle: -90,  r: 140 },
+  { label: 'Claude',          angle: -40,  r: 150 },
+  { label: 'Claude Code',     angle: 10,   r: 155 },
+  { label: 'Research Wizard', angle: 58,   r: 145 },
+  { label: 'Ivy',             angle: 105,  r: 140 },
+  { label: 'Nick',            angle: 148,  r: 145 },
 ];
 
 const DAY_AGENTS = [
-  { label: 'Meta AI', angle: 160, r: 200 },
-  { label: 'Lovable', angle: -145, r: 195 },
+  { label: 'Meta AI',       angle: -160, r: 200 },
+  { label: 'Lovable',       angle: -140, r: 195 },
   { label: 'GitHub Copilot', angle: -115, r: 205 },
-  { label: 'MS Copilot', angle: 200, r: 195 },
+  { label: 'MS Copilot',    angle: 195,  r: 195 },
 ];
 
 function toCart(cx, cy, angle, r) {
@@ -39,7 +39,7 @@ export default function Slide02MeuTime() {
   });
 
   return (
-    <section id="slide-02" className="slide slide-light" ref={ref}>
+    <section id="slide-10" className="slide slide-light" ref={ref}>
       <div className="w-full max-w-5xl px-4 flex flex-col items-center">
         <motion.h2
           className="font-serif text-center mb-2"
@@ -60,8 +60,7 @@ export default function Slide02MeuTime() {
           ferramentas que uso no dia a dia
         </motion.p>
 
-        {/* SVG Diagram */}
-        <div className="w-full overflow-visible" style={{ maxWidth: 640 }}>
+        <div className="w-full overflow-visible" style={{ maxWidth: 680 }}>
           <svg viewBox="0 0 640 560" width="100%" height="auto">
             {/* Lines to main agents */}
             {MAIN_AGENTS.map((agent, i) => {
@@ -120,6 +119,7 @@ export default function Slide02MeuTime() {
             {/* Main agent nodes */}
             {MAIN_AGENTS.map((agent, i) => {
               const pos = toCart(CENTER.x, CENTER.y, agent.angle, agent.r);
+              const labelY = pos.y > CENTER.y ? pos.y + 36 : pos.y - 28;
               return (
                 <motion.g
                   key={`main-${i}`}
@@ -130,7 +130,7 @@ export default function Slide02MeuTime() {
                   <circle cx={pos.x} cy={pos.y} r={22} fill="#1C1208" />
                   <text
                     x={pos.x}
-                    y={pos.y + (agent.angle > 80 || agent.angle < -80 ? 36 : -28)}
+                    y={labelY}
                     textAnchor="middle"
                     fill="#1C1208"
                     fontSize="10"
@@ -170,13 +170,13 @@ export default function Slide02MeuTime() {
             {/* Legend */}
             <circle cx={30} cy={510} r={8} fill="#1C1208" />
             <text x={45} y={514} fill="#888" fontSize="10" fontFamily="Inter">Agentes principais</text>
-            <circle cx={160} cy={510} r={6} fill="#888" />
-            <text x={173} y={514} fill="#888" fontSize="10" fontFamily="Inter">Dia a dia</text>
+            <circle cx={180} cy={510} r={6} fill="#888" />
+            <text x={193} y={514} fill="#888" fontSize="10" fontFamily="Inter">Dia a dia</text>
           </svg>
         </div>
       </div>
 
-      <NextArrow nextId="slide-02b" />
+      <NextArrow nextId="slide-11" />
     </section>
   );
 }

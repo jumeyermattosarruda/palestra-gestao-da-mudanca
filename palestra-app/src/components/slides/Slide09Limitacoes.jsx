@@ -48,6 +48,17 @@ const LIMITS = [
   {
     icon: (
       <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+        <rect x="5" y="8" width="8" height="12" rx="2" stroke="#D4845A" strokeWidth="2"/>
+        <rect x="15" y="8" width="8" height="12" rx="2" stroke="#D4845A" strokeWidth="2"/>
+        <path d="M8 14h12" stroke="#D4845A" strokeWidth="1.5" strokeDasharray="2 2"/>
+      </svg>
+    ),
+    title: 'Homogeneização do pensamento',
+    desc: 'Quando todo mundo usa os mesmos prompts e modelos, as respostas começam a se parecer. Diversidade de raciocínio é um ativo — não delegue seu ponto de vista.',
+  },
+  {
+    icon: (
+      <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
         <path d="M6 22V10a2 2 0 012-2h12a2 2 0 012 2v12" stroke="#D4845A" strokeWidth="2" strokeLinecap="round"/>
         <path d="M2 22h24" stroke="#D4845A" strokeWidth="2" strokeLinecap="round"/>
         <rect x="10" y="14" width="8" height="8" rx="1" stroke="#D4845A" strokeWidth="2"/>
@@ -62,7 +73,7 @@ export default function Slide09Limitacoes() {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.2 });
 
   return (
-    <section id="slide-09" className="slide slide-dark" ref={ref}>
+    <section id="slide-16" className="slide slide-dark" ref={ref}>
       <div className="w-full max-w-3xl px-6">
         <motion.h2
           className="font-serif text-center mb-8"
@@ -81,7 +92,7 @@ export default function Slide09Limitacoes() {
               className="flex items-start gap-5"
               initial={{ opacity: 0, y: 20 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0.15 * i, duration: 0.5 }}
+              transition={{ delay: 0.12 * i, duration: 0.5 }}
             >
               <div className="mt-0.5 flex-shrink-0">{item.icon}</div>
               <div>
@@ -100,7 +111,7 @@ export default function Slide09Limitacoes() {
         </div>
       </div>
 
-      <NextArrow nextId="slide-09b" />
+      <NextArrow nextId="slide-17" />
     </section>
   );
 }

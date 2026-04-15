@@ -39,7 +39,7 @@ export default function Slide02bAgentes() {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.2 });
 
   return (
-    <section id="slide-02b" className="slide slide-light" ref={ref}>
+    <section id="slide-11" className="slide slide-light" ref={ref}>
       <div className="w-full max-w-4xl px-6">
         <motion.h2
           className="font-serif text-center mb-2"
@@ -97,7 +97,7 @@ export default function Slide02bAgentes() {
         </div>
       </div>
 
-      <NextArrow nextId="slide-03" />
+      <NextArrow nextId="slide-12" />
     </section>
   );
 }

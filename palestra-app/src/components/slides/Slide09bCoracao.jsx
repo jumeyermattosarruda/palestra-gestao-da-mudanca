@@ -50,15 +50,6 @@ export default function Slide09bCoracao() {
           transition={{ delay: 1 }}
         />
 
-        <motion.p
-          className="font-sans text-sm mt-4"
-          style={{ color: '#C4A882', opacity: 0.7 }}
-          initial={{ opacity: 0 }}
-          animate={inView ? { opacity: 0.7 } : {}}
-          transition={{ delay: 1.2 }}
-        >
-          Obrigado — Jumeyermatt Arruda · Gestão da Mudança · UnB 2025
-        </motion.p>
       </div>
     </section>
   );
