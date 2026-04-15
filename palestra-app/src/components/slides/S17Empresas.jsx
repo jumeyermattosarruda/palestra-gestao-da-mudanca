@@ -89,7 +89,7 @@ export default function S17Empresas() {
         </div>
       </div>
 
-      <NextArrow nextId="slide-18" />
+      <NextArrow nextId="slide-17b" />
     </section>
   );
 }
