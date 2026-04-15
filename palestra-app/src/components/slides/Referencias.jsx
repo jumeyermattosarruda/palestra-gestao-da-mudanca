@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import NextArrow from '../NextArrow';
 
 const reports = [
   {
@@ -26,44 +27,72 @@ const influencers = [
   { handle: '@theaipanicclub', url: 'https://www.instagram.com/theaipanicclub/' },
 ];
 
-const linkClass =
-  'text-slate-200 hover:text-rose-300 underline underline-offset-4 transition-colors duration-200';
-
 export default function Referencias() {
-  const [titleRef, titleInView] = useInView({ threshold: 0.2, triggerOnce: true });
-  const [sec1Ref, sec1InView] = useInView({ threshold: 0.1, triggerOnce: true });
-  const [sec2Ref, sec2InView] = useInView({ threshold: 0.1, triggerOnce: true });
+  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.2 });
 
   return (
-    <section
-      id="slide-17c"
-      className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-slate-900 to-slate-800 px-6 py-16"
-    >
-      <motion.h2
-        ref={titleRef}
-        initial={{ opacity: 0, y: -30 }}
-        animate={titleInView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.7, ease: 'easeOut' }}
-        className="text-4xl md:text-5xl font-bold text-white text-center mb-12"
-        style={{ fontFamily: "'Playfair Display', serif" }}
-      >
-        Para ir além 📚
-      </motion.h2>
-
-      <div className="w-full max-w-2xl flex flex-col gap-10">
-        <motion.div
-          ref={sec1Ref}
-          initial={{ opacity: 0, x: -40 }}
-          animate={sec1InView ? { opacity: 1, x: 0 } : {}}
-          transition={{ duration: 0.6, ease: 'easeOut', delay: 0.1 }}
+    <section id="slide-17c" className="slide slide-dark" ref={ref}>
+      <div className="w-full max-w-2xl px-6">
+        <motion.h2
+          className="font-serif"
+          style={{
+            fontSize: 'clamp(2rem, 4vw, 3.5rem)',
+            fontWeight: 400,
+            color: '#F0E6D6',
+            marginBottom: '0.5rem',
+          }}
+          initial={{ opacity: 0, y: -20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.5 }}
         >
-          <p className="text-rose-400 text-sm font-semibold uppercase tracking-widest mb-3">
+          Pra ir além
+        </motion.h2>
+
+        <motion.div
+          style={{ width: '60px', height: '2px', background: '#D4845A', marginBottom: '2rem' }}
+          initial={{ scaleX: 0 }}
+          animate={inView ? { scaleX: 1 } : {}}
+          transition={{ delay: 0.2, duration: 0.4 }}
+        />
+
+        {/* Relatórios & Pesquisas */}
+        <motion.div
+          style={{ marginBottom: '2rem' }}
+          initial={{ opacity: 0, x: -30 }}
+          animate={inView ? { opacity: 1, x: 0 } : {}}
+          transition={{ duration: 0.5, delay: 0.25 }}
+        >
+          <p
+            className="font-sans"
+            style={{
+              fontSize: '11px',
+              letterSpacing: '0.1em',
+              color: '#D4845A',
+              textTransform: 'uppercase',
+              fontWeight: 600,
+              marginBottom: '0.75rem',
+            }}
+          >
             Relatórios &amp; Pesquisas
           </p>
-          <ul className="flex flex-col gap-2">
+          <ul style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
             {reports.map((r) => (
               <li key={r.url}>
-                <a href={r.url} target="_blank" rel="noreferrer" className={linkClass}>
+                <a
+                  href={r.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="font-sans"
+                  style={{
+                    color: '#C4A882',
+                    textDecoration: 'underline',
+                    textUnderlineOffset: '4px',
+                    fontSize: '14px',
+                    transition: 'color 0.2s',
+                  }}
+                  onMouseEnter={(e) => (e.currentTarget.style.color = '#D4845A')}
+                  onMouseLeave={(e) => (e.currentTarget.style.color = '#C4A882')}
+                >
                   {r.label}
                 </a>
               </li>
@@ -71,23 +100,42 @@ export default function Referencias() {
           </ul>
         </motion.div>
 
+        {/* Quem acompanhar */}
         <motion.div
-          ref={sec2Ref}
-          initial={{ opacity: 0, x: -40 }}
-          animate={sec2InView ? { opacity: 1, x: 0 } : {}}
-          transition={{ duration: 0.6, ease: 'easeOut', delay: 0.3 }}
+          initial={{ opacity: 0, x: -30 }}
+          animate={inView ? { opacity: 1, x: 0 } : {}}
+          transition={{ duration: 0.5, delay: 0.45 }}
         >
-          <p className="text-rose-400 text-sm font-semibold uppercase tracking-widest mb-3">
+          <p
+            className="font-sans"
+            style={{
+              fontSize: '11px',
+              letterSpacing: '0.1em',
+              color: '#D4845A',
+              textTransform: 'uppercase',
+              fontWeight: 600,
+              marginBottom: '0.75rem',
+            }}
+          >
             Quem acompanhar
           </p>
-          <ul className="flex flex-col gap-2">
+          <ul style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
             {influencers.map((i) => (
               <li key={i.url}>
                 <a
                   href={i.url}
                   target="_blank"
                   rel="noreferrer"
-                  className={`${linkClass} font-mono`}
+                  style={{
+                    fontFamily: 'monospace',
+                    color: '#C4A882',
+                    textDecoration: 'underline',
+                    textUnderlineOffset: '4px',
+                    fontSize: '14px',
+                    transition: 'color 0.2s',
+                  }}
+                  onMouseEnter={(e) => (e.currentTarget.style.color = '#D4845A')}
+                  onMouseLeave={(e) => (e.currentTarget.style.color = '#C4A882')}
                 >
                   {i.handle}
                 </a>
@@ -96,6 +144,8 @@ export default function Referencias() {
           </ul>
         </motion.div>
       </div>
+
+      <NextArrow nextId="slide-18" />
     </section>
   );
 }

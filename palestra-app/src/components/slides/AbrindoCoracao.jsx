@@ -1,35 +1,57 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import NextArrow from '../NextArrow';
 
 export default function AbrindoCoracao() {
-  const [titleRef, titleInView] = useInView({ threshold: 0.2, triggerOnce: true });
-  const [imgRef, imgInView] = useInView({ threshold: 0.1, triggerOnce: true });
+  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.2 });
 
   return (
-    <section
-      id="slide-17b"
-      className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-rose-100 via-pink-200 to-rose-300 px-6 py-16"
-    >
+    <section id="slide-17b" className="slide slide-dark" ref={ref}>
+      {/* GIF background */}
+      <img
+        src={`${import.meta.env.BASE_URL}assets/brown gif.gif`}
+        alt=""
+        aria-hidden="true"
+        style={{
+          position: 'absolute',
+          inset: 0,
+          width: '100%',
+          height: '100%',
+          objectFit: 'cover',
+          zIndex: 0,
+        }}
+      />
+
+      {/* Dark overlay */}
+      <div
+        style={{
+          position: 'absolute',
+          inset: 0,
+          background: 'rgba(0,0,0,0.40)',
+          zIndex: 1,
+        }}
+      />
+
+      {/* Title */}
       <motion.h2
-        ref={titleRef}
+        className="font-serif"
+        style={{
+          position: 'relative',
+          zIndex: 2,
+          fontWeight: 300,
+          color: '#FFFFFF',
+          fontSize: 'clamp(2.5rem, 5vw, 4.5rem)',
+          textAlign: 'center',
+          padding: '0 2rem',
+        }}
         initial={{ opacity: 0, y: -40 }}
-        animate={titleInView ? { opacity: 1, y: 0 } : {}}
+        animate={inView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.7, ease: 'easeOut' }}
-        className="text-4xl md:text-5xl font-bold text-rose-700 text-center mb-10"
-        style={{ fontFamily: "'Playfair Display', serif" }}
       >
-        Abrindo meu coração
+        Abrindo meu Coração
       </motion.h2>
 
-      <motion.img
-        ref={imgRef}
-        src={`${import.meta.env.BASE_URL}assets/brown gif.gif`}
-        alt="Abrindo meu coração"
-        initial={{ opacity: 0, scale: 0.85 }}
-        animate={imgInView ? { opacity: 1, scale: 1 } : {}}
-        transition={{ duration: 0.7, ease: 'easeOut', delay: 0.3 }}
-        className="max-h-[55vh] w-auto object-contain rounded-2xl shadow-2xl"
-      />
+      <NextArrow nextId="slide-17c" />
     </section>
   );
 }
