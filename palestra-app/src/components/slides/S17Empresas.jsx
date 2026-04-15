@@ -2,50 +2,7 @@ import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import NextArrow from '../NextArrow';
 
-function LogoBadge({ bg, text, textColor = 'white' }) {
-  return (
-    <div
-      style={{
-        width: 48,
-        height: 48,
-        borderRadius: '50%',
-        background: bg,
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        fontFamily: 'Inter',
-        fontWeight: 600,
-        fontSize: '0.85rem',
-        color: textColor,
-        flexShrink: 0,
-        margin: '0 auto 6px',
-      }}
-    >
-      {text}
-    </div>
-  );
-}
-
-const BANNED = [
-  { logo: { bg: '#555555', text: 'Ap' }, name: 'Apple' },
-  { logo: { bg: '#1428A0', text: 'Sa' }, name: 'Samsung' },
-  { logo: { bg: '#2C2C2C', text: 'GS' }, name: 'Goldman Sachs' },
-];
-
-const LIMITED = [
-  { logo: { bg: '#003087', text: 'JP' }, name: 'JPMorgan' },
-];
-
-const ALLIN = [
-  { logo: { bg: '#58CC02', text: 'D'  }, name: 'Duolingo' },
-  { logo: { bg: '#FFB3C7', text: 'K', textColor: '#1C1208' }, name: 'Klarna' },
-  { logo: { bg: '#96BF48', text: 'S'  }, name: 'Shopify' },
-  { logo: { bg: '#0A2540', text: 'iC' }, name: 'iConnections' },
-  { logo: { bg: '#F54E00', text: 'PH' }, name: 'PostHog' },
-  { logo: { bg: '#6B46C1', text: 'A'  }, name: 'Alice' },
-];
-
-function Column({ title, icon, items, delay, inView }) {
+function Column({ title, icon, desc, delay, inView }) {
   return (
     <motion.div
       className="flex-1 flex flex-col"
@@ -54,24 +11,16 @@ function Column({ title, icon, items, delay, inView }) {
       transition={{ delay, duration: 0.5 }}
     >
       <div className="text-center mb-6">
-        <p className="font-sans font-semibold text-sm" style={{ color: '#F0E6D6' }}>
+        <p
+          className="font-sans font-semibold text-sm"
+          style={{ color: '#F0E6D6', fontSize: '1.1rem' }}
+        >
           {icon} {title}
         </p>
       </div>
-      <div className="flex flex-col gap-5">
-        {items.map((item, i) => (
-          <div key={i} className="flex flex-col items-center text-center">
-            <LogoBadge
-              bg={item.logo.bg}
-              text={item.logo.text}
-              textColor={item.logo.textColor}
-            />
-            <p className="font-sans text-sm" style={{ color: '#C4A882' }}>
-              {item.name}
-            </p>
-          </div>
-        ))}
-      </div>
+      <p className="font-sans text-sm text-center" style={{ color: '#C4A882', lineHeight: 1.6 }}>
+        {desc}
+      </p>
     </motion.div>
   );
 }
@@ -105,7 +54,7 @@ export default function S17Empresas() {
           <Column
             title="Proibiram"
             icon="🚫"
-            items={BANNED}
+            desc="Bloquearam o uso de ferramentas de IA generativa pelos funcionários, preocupadas com segurança de dados e confidencialidade."
             delay={0.2}
             inView={inView}
           />
@@ -119,7 +68,7 @@ export default function S17Empresas() {
           <Column
             title="Limitaram"
             icon="⚠️"
-            items={LIMITED}
+            desc="Permitiram uso restrito em contextos controlados, com políticas claras de aprovação e auditoria de uso."
             delay={0.3}
             inView={inView}
           />
@@ -133,7 +82,7 @@ export default function S17Empresas() {
           <Column
             title="All-in"
             icon="✅"
-            items={ALLIN}
+            desc="Adotaram IA como estratégia central, integrando modelos na operação, reduzindo headcount e reposicionando times."
             delay={0.4}
             inView={inView}
           />

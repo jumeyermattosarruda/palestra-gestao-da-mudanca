@@ -19,37 +19,37 @@ export default function S05Venn() {
         </motion.h2>
 
         <div style={{ width: '100%', maxWidth: 680 }}>
-          <svg viewBox="0 0 680 460" width="100%" height="auto">
-            {/* Circle 1 — O que eu sei fazer */}
+          <svg viewBox="0 0 680 500" width="100%" height="auto">
+            {/* Circle 1 — O que eu sei fazer (shifted up 35px: cy 220→185) */}
             <motion.circle
-              cx={270} cy={220} r={0}
+              cx={270} cy={185} r={0}
               fill="#D4845A" fillOpacity={0.15}
               stroke="#D4845A" strokeOpacity={0.6} strokeWidth={2}
               animate={inView ? { r: 150 } : { r: 0 }}
               transition={{ delay: 0, duration: 0.7, ease: 'easeOut' }}
             />
 
-            {/* Circle 2 — O que quero desenvolver */}
+            {/* Circle 2 — O que quero desenvolver (shifted up 35px: cy 220→185) */}
             <motion.circle
-              cx={410} cy={220} r={0}
+              cx={410} cy={185} r={0}
               fill="#4A90D9" fillOpacity={0.15}
               stroke="#4A90D9" strokeOpacity={0.6} strokeWidth={2}
               animate={inView ? { r: 150 } : { r: 0 }}
               transition={{ delay: 0.4, duration: 0.7, ease: 'easeOut' }}
             />
 
-            {/* Circle 3 — O que o mundo precisa */}
+            {/* Circle 3 — O que o mundo precisa (shifted up 35px: cy 340→305) */}
             <motion.circle
-              cx={340} cy={340} r={0}
+              cx={340} cy={305} r={0}
               fill="#4A9D6F" fillOpacity={0.15}
               stroke="#4A9D6F" strokeOpacity={0.6} strokeWidth={2}
               animate={inView ? { r: 150 } : { r: 0 }}
               transition={{ delay: 0.8, duration: 0.7, ease: 'easeOut' }}
             />
 
-            {/* Center highlight */}
+            {/* Center highlight (shifted up 35px: cy 268→233) */}
             <motion.circle
-              cx={340} cy={268} r={24}
+              cx={340} cy={233} r={24}
               fill="#D4845A"
               animate={
                 inView
@@ -64,7 +64,7 @@ export default function S05Venn() {
               }}
             />
             <motion.text
-              x={340} y={273}
+              x={340} y={238}
               textAnchor="middle"
               fill="#1C1208"
               fontSize="13"
@@ -77,9 +77,9 @@ export default function S05Venn() {
               aqui
             </motion.text>
 
-            {/* Labels */}
+            {/* Labels (shifted up 35px) */}
             <motion.text
-              x={180} y={155}
+              x={180} y={120}
               textAnchor="middle"
               fill="#D4845A"
               fontSize="14"
@@ -93,7 +93,7 @@ export default function S05Venn() {
             </motion.text>
 
             <motion.text
-              x={500} y={155}
+              x={500} y={120}
               textAnchor="middle"
               fill="#4A90D9"
               fontSize="14"
@@ -106,7 +106,7 @@ export default function S05Venn() {
               O que quero
             </motion.text>
             <motion.text
-              x={500} y={173}
+              x={500} y={138}
               textAnchor="middle"
               fill="#4A90D9"
               fontSize="14"
@@ -119,8 +119,9 @@ export default function S05Venn() {
               desenvolver
             </motion.text>
 
+            {/* C3 label: bottom of circle (305+150=455) + 20px margin = 475, within 500 viewBox */}
             <motion.text
-              x={340} y={435}
+              x={340} y={475}
               textAnchor="middle"
               fill="#4A9D6F"
               fontSize="14"

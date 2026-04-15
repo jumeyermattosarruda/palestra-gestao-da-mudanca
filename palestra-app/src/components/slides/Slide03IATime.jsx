@@ -33,7 +33,7 @@ export default function Slide03IATime() {
         <div className="flex items-stretch gap-0 relative">
           {/* Left column */}
           <motion.div
-            className="flex-1 flex flex-col gap-5 pr-8"
+            className="flex-1 flex flex-col gap-5 pl-6 pr-4"
             initial={{ opacity: 0, x: -60 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
@@ -72,7 +72,7 @@ export default function Slide03IATime() {
 
           {/* Right column */}
           <motion.div
-            className="flex-1 flex flex-col gap-5 pl-8"
+            className="flex-1 flex flex-col gap-5 pl-4 pr-6"
             initial={{ opacity: 0, x: 60 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
