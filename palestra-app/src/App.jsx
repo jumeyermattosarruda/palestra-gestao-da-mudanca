@@ -44,12 +44,14 @@ import S17Empresas from './components/slides/S17Empresas';
 import S18DinamicaTime from './components/slides/S18DinamicaTime';
 // Slide 19 — Dinâmica Prompt [NOVO]
 import S19DinamicaPrompt from './components/slides/S19DinamicaPrompt';
+import AbrindoCoracao from './components/slides/AbrindoCoracao';
+import Referencias from './components/slides/Referencias';
 
 const SLIDE_IDS = [
   'slide-00', 'slide-01', 'slide-02', 'slide-03', 'slide-04',
   'slide-05', 'slide-06', 'slide-06b', 'slide-07', 'slide-08', 'slide-09',
   'slide-10', 'slide-11', 'slide-12', 'slide-13', 'slide-14',
-  'slide-15', 'slide-16', 'slide-17', 'slide-18', 'slide-19',
+  'slide-15', 'slide-16', 'slide-17', 'slide-17b', 'slide-17c', 'slide-18', 'slide-19',
 ];
 
 export default function App() {
@@ -106,6 +108,8 @@ export default function App() {
       <Slide08bRadar />
       <Slide09Limitacoes />
       <S17Empresas />
+      <AbrindoCoracao />
+      <Referencias />
       <S18DinamicaTime />
       <S19DinamicaPrompt />
     </div>
